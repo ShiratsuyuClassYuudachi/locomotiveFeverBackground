@@ -1,0 +1,37 @@
+{
+  "name": "jwxt-backend",
+  "version": "1.0.0",
+  "description": "波点象教务系统",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.byr.moe/Gaojianli/jwxt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ioredis": "^4.14.1",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-router": "^7.4.0",
+    "koa-session2": "^2.2.10",
+    "koa2-auth": "0.0.4",
+    "lodash-fp": "^0.10.4",
+    "mongoose": "^5.7.10",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "koa-logger": "^3.2.1",
+    "koa2-cors": "^2.0.6"
+  }
+}
