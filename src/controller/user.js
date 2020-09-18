@@ -10,7 +10,6 @@ const register = async ctx => {
         secret
     } = ctx.request.body;
     if (name && secret && email) {
-        if(ctx.find(email))
         // eslint-disable-next-line no-constant-condition
         if (true) {
             var myDate = new Date;
