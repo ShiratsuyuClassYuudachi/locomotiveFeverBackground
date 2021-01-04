@@ -1,6 +1,6 @@
 "use strict";
 const Koa = require("koa");
-const bodyParser = require('koa-body');
+const koaBody = require('koa-body');
 const session = require("koa-session2");
 const config = require('./config/config');
 const route = require("./src/router/index");
@@ -11,7 +11,8 @@ const ServiceLoader = require("./src/service/loader");
 const dbLoader = require("./database/loader");
 const modelLoader = require("./src/model/loader");
 const process = require("process");
-const bcrypt = require("bcrypt");
+const path = require('path');
+const koaStatic = require('koa-static');
 
 const app = new Koa();
 app.config = config;
@@ -20,9 +21,13 @@ app.use(session({
     key: "session",
     maxAge: 1000000
 }));
-app.use(bodyParser({
+app.use(koaBody({
     multipart: true,
-    formLimit: "1.5mb"
+    formidable: {
+        maxFileSize: 1024 * 1024 * 1024,
+        uploadDir: path.join(__dirname, 'public/uploads'),
+        keepExtensions: true
+    }
 }));
 app.use(ServiceLoader);
 if (config.debug) {
@@ -32,6 +37,8 @@ if (config.debug) {
         credentials: true
     }));
     app.use(logger());
+    // eslint-disable-next-line no-undef
+    app.use(koaStatic(path.join(__dirname, 'public')))
 }
 dbLoader(app).
     then(modelLoader).

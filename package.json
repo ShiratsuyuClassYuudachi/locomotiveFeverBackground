@@ -1,7 +1,7 @@
 {
-  "name": "lf-backend",
+  "name": "jwxt-backend",
   "version": "1.0.0",
-  "description": "轮轨纵横后端",
+  "description": "波点象教务系统",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,20 +9,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ShiratsuyuClassYuudachi/locomotiveFeverBackground"
+    "url": "https://git.byr.moe/Gaojianli/jwxt.git"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.0",
     "ioredis": "^4.14.1",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-router": "^7.4.0",
     "koa-session2": "^2.2.10",
+    "koa-static": "^5.0.0",
     "koa2-auth": "0.0.4",
     "lodash-fp": "^0.10.4",
+    "md5": "^2.3.0",
+    "mkdirp": "^1.0.4",
     "mongoose": "^5.7.10",
+    "multer": "^1.4.2",
+    "node-uuid": "^1.4.8",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
@@ -33,6 +37,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "koa-logger": "^3.2.1",
+    "koa-multer": "^1.0.2",
     "koa2-cors": "^2.0.6"
   }
 }
