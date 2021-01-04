@@ -33,10 +33,12 @@ node_modules
 .node_repl_history
 
 
-# VSCODE 
+# VSCODE
 .vscode
 
 # JETBRAIN
 .idea
 
 config/config.js
+
+public
