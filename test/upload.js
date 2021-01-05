@@ -1,9 +1,9 @@
 $(document).ready(function (){
     $("#upload").click(function (){
         var path;
-        var img = $("img").val();
+        var img = document.querySelector("input[type='file']");
         var formdata = new FormData();
-        formdata.append("file",img);
+        formdata.append("file",img.files[0]);
 
         var requestOptions = {
             method: 'POST',
