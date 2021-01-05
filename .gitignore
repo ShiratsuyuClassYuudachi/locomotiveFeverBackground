@@ -42,3 +42,10 @@ node_modules
 config/config.js
 
 public
+
+*.h5
+*.pyc
+*.so
+*.kate-swp
+*.jpg
+*.png
