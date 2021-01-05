@@ -13,8 +13,7 @@ $(document).ready(function (){
         .then(response=>{
             if(response.status===201){
                 response.json().then(function (json){
-                    json.forEach(element =>{
-                        var path = element.path;
+                        var path = json.path;
                         var myHeaders = new Headers();
                         myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
                         var urlencoded = new URLSearchParams();
@@ -28,11 +27,10 @@ $(document).ready(function (){
                         fetch("http://172.26.36.228/api/images/classify", reqOptions)
                         .then(response => {
                             if(response.status===200){
-                                $("#result").val(response.text());
+                                window.alert(response.text());
                             }
                         })
                         .catch(error => console.log('error', error));
-                    })
                 })
             }
         })
