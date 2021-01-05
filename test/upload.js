@@ -27,7 +27,9 @@ $(document).ready(function (){
                         fetch("http://172.26.36.228/api/images/classify", reqOptions)
                         .then(response => {
                             if(response.status===200){
-                                window.alert(response.text());
+                                response.text().then(function (text){
+                                    window.alert(text);
+                                })
                             }
                         })
                         .catch(error => console.log('error', error));
