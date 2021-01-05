@@ -10,10 +10,13 @@ $(document).ready(function (){
             body: formdata,
             redirect: 'follow'
         };
-
-        fetch("http://172.26.36.228/api/images/upload", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+        for(let i=0;i<5;i++){
+            fetch("http://172.26.36.228/api/images/upload", requestOptions)
+                .then(response=>response.json().then(function (json){
+                    var path = json.path
+                    console.log(path);
+                    break;
+            }))
+        }
     })
 })
