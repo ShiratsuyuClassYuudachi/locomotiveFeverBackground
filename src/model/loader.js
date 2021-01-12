@@ -6,6 +6,7 @@ module.exports = app => {
     let modelList = {
         Log: log(app),
         Person: person(app),
+        Result: result(app)
     };
     modelList = {
         User: modelList.Person.discriminator("user", require("./user")(app)),
