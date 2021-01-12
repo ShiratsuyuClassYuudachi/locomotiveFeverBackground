@@ -50,9 +50,10 @@ const getResult = async ctx=>{
     if(result){
         ctx.body={result:result.result};
         ctx.response.status=200;
-        return ctx;
     }
-    ctx.response.status=202;
+    else{
+        ctx.response.status=202;
+    }
 }
 module.exports = {
     upload,
