@@ -28,6 +28,11 @@ const classify = async ctx=>{
     try{
         await child_process.exec('python3 ./classify/main.py -i '+fpath);
         let result = 'processing';
+        const res = new ctx.app.model.Result({
+            path:fpath,
+            result:"test"
+        })
+        await res.save();
         console.log(result.toString());
         ctx.body={result : result.toString()};
         ctx.response.status=200;
