@@ -26,16 +26,31 @@ const classify = async ctx=>{
     const { fpath }= ctx.request.body;
     console.log(fpath);
     try{
-        const result=await child_process.execSync('python3 ./classify/main.py -i '+fpath);
+        await child_process.exec('python3 ./classify/main.py -i '+fpath);
+        let result = 'processing';
         console.log(result.toString());
         ctx.body={result : result.toString()};
         ctx.response.status=200;
     }catch(error){
         console.log(error);
-        ctx.response.status = 406; 
+        ctx.response.status = 406;
     }
+}
+
+const getResult = async ctx=>{
+    const { fpath } = ctx.request.body;
+    const result = await ctx.app.model.Result.findOne({
+        path:fpath
+    })
+    if(result){
+        ctx.body={result:result.result};
+        ctx.response.status=200;
+        return ctx;
+    }
+    ctx.response.status=202;
 }
 module.exports = {
     upload,
-    classify
+    classify,
+    getResult
 };
