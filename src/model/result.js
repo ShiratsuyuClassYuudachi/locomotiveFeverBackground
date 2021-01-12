@@ -7,10 +7,11 @@ module.exports = app => {
         Schema
     } = mongodb;
     // eslint-disable-next-line newline-before-return
-    return new Schema({
+    const resultSchema =  new Schema({
         path:String,
         result:String
     }, {
         discriminatorKey: 'kind'
     });
+    return mongodb.model("result",resultSchema);
 };

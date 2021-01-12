@@ -11,7 +11,6 @@ module.exports = app => {
     modelList = {
         User: modelList.Person.discriminator("user", require("./user")(app)),
         Admin: modelList.Person.discriminator("admin", require("./admin")(app)),
-        Result: modelList.Result.discriminator("result",require("./result")(app)),
         ...modelList
     };
     app.model = Object.assign(modelList, app.model);
