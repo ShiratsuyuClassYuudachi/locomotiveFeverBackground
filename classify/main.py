@@ -25,11 +25,30 @@ from numba import cuda
 import sys
 import getopt
 import prettytable as pt
+import pymongo
+
+'''
+config = tf.compat.v1.ConfigProto(
+    intra_op_parallelism_threads=1,
+    inter_op_parallelism_threads=1,
+    allow_soft_placement = True
+)
+session = tf.compat.v1.Session(config=config)
+'''
 
 saved_model_path = './classify/crfrnn_keras_model.h5'
 
 classes_name_list = ['DF11','DF11G','DF11Z','DF4DK','DF4DD','DF4_ARMY','DF4_BLUE','DF4_ORANGE','DF4_Ukrine','DF4_WATERMELON','DF4_WG','DF8B','HXD1D','HXD3D','HXN3','HXN3B','HXN5','HXN5B','ND5','NJ2','SS7D','SS7E','SS8','SS9','SS9G']
 model = load_model('./classify/inception_v3_model_weights.h5') 
+
+dbaddress= "mongodb://localhost:27017/"
+
+def init_db(dbaddress):
+    myclient = pymongo.MongoClient(dbaddress)
+    mydb = myclient["locomotivefever"]
+    mycol = mydb["results"]
+    return mycol
+        
 
 def seg(filename):
     input_file=("./public/uploads/"+filename)
@@ -98,11 +117,15 @@ def main(argv):
             sys.exit()
         elif opt in ("-i","--ifile"):
             filename=arg
+    mycol = init_db(dbaddress)
     res = seg(filename)
     if res == -1:
         print ("Can`t recognize this image")
+        mycol.insert_one({"path":filename,"result":"Can`t recognize this image"})
         sys.exit()
-    print (classfy(filename))
+    result = classfy(filename)
+    print (result)
+    mycol.insert_one({"path":filename,"result":result})
 
 if __name__ == '__main__':
     main(sys.argv[1:])
