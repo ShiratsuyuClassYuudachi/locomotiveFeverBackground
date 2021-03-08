@@ -38,7 +38,7 @@ session = tf.compat.v1.Session(config=config)
 
 saved_model_path = './classify/crfrnn_keras_model.h5'
 
-classes_name_list = ['DF11','DF11G','DF11Z','DF4DK','DF4DD','DF4_ARMY','DF4_BLUE','DF4_ORANGE','DF4_Ukrine','DF4_WATERMELON','DF4_WG','DF8B','HXD1D','HXD3D','HXN3','HXN3B','HXN5','HXN5B','ND5','NJ2','SS7D','SS7E','SS8','SS9','SS9G']
+classes_name_list = ['DF11','DF11G','DF11Z','DF4','DF4D','DF4DD','DF8B','HXD1','HXD1B&C','HXD1D','HXD2Series','HXD3','HXD3B&C','HXD3D','HXN3','HXN3B','HXN5','HXN5B','ND5','NJ2','SS7D','SS7E','SS8','SS9','SS9G']
 model = load_model('./classify/inception_v3_model_weights.h5') 
 
 dbaddress= "mongodb://localhost:27017/"
